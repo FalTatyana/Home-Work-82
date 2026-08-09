@@ -29,7 +29,7 @@ const SideBar = () => {
       className="text-white p-3 min-vh-100 flex-shrink-0"
       style={{
         width: "250px",
-        backgroundColor: "#050716",
+        backgroundColor: "#060817",
         borderRadius: "20px",
         border: "1px solid transparent",
         background:
@@ -47,7 +47,7 @@ const SideBar = () => {
       <ul className="nav flex-column mt-4 ms-2">
         {linksAr.map((link) => {
           return (
-            <li className="nav-link mb-2">
+            <li key={link.name} className="nav-link mb-2">
               <NavLink
                 to={link.path}
                 className={({ isActive }) =>
@@ -60,7 +60,7 @@ const SideBar = () => {
                     : "1px solid transparent",
                   borderRadius: isActive ? "10px" : "0",
                   background: isActive
-                    ? "linear-gradient(to right, #050716, #F14BB1) padding-box, linear-gradient(45deg, #F14BB1, #050716) border-box"
+                    ? "linear-gradient(45deg, #050716, #590FA4, #F14BB1) padding-box, linear-gradient(45deg, #F14BB1, #050716, #050716) border-box"
                     : "0",
                 })}
               >

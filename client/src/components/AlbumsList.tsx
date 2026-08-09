@@ -1,5 +1,5 @@
 
-const ArtistsList = () => {
+const Albums = () => {
   return (
     <ul className="list-group list-group">
     <li className="list-group-item">An item</li>
@@ -11,4 +11,4 @@ const ArtistsList = () => {
   )
 }
 
-export default ArtistsList
+export default Albums

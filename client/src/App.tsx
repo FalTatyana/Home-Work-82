@@ -1,11 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout/Layout";
 import ArtistsList from "./components/ArtistsList";
-import Albums from "./components/Albums";
-import Tracks from "./components/Tracks";
-import CreateArtist from "./components/CreateArtist";
-import CreateAlbum from "./components/CreateAlbum";
-import CreateTrack from "./components/CreateTrack";
+import Albums from "./components/AlbumsList";
+import Tracks from "./components/TracksList";
+import CreateArtist from "./components/creatingItems/CreateArtist";
+import CreateAlbum from "./components/creatingItems/CreateAlbum";
+import CreateTrack from "./components/creatingItems/CreateTrack";
 
 const App = () => {
   return (

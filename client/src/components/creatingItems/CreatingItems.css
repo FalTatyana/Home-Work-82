@@ -1,0 +1,39 @@
+.creating-input {
+  border: 1px solid #4c5067;
+  background-color: #050716;
+  color: #b6b8c2;
+}
+
+.creating-input:focus {
+  border: 1px solid #4c5067;
+  background-color: #050716;
+  color: #b6b8c2;
+}
+
+.creating-input::file-selector-button {
+ background: linear-gradient(45deg, #590FA4, #F14BB1);
+ color: white;
+ border: none;
+}
+
+.creating-label {
+ color: #4c5067 !important;
+ margin-left: 10px;
+}
+
+.creating-btn {
+  width: 150px;
+  color: white;
+  border: 1px solid #590fa4;
+  border-radius: 10px;
+  background: #050716;
+}
+
+.creating-btn:hover {
+  width: 150px;
+  color: white;
+  border: 1px solid #590fa4;
+  border-radius: 10px;
+  background: linear-gradient(45deg, #060817, #590fa4, #f14bb1) padding-box,
+    linear-gradient(45deg, #f14bb1, #060817, #590fa4) border-box;
+}
