@@ -1,3 +1,5 @@
+import './itemLists.css';
+
 const Tracks = () => {
   return (
     <ul className="list-group list-group">

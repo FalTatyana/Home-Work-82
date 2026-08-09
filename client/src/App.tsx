@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout/Layout";
-import ArtistsList from "./components/ArtistsList";
-import Albums from "./components/AlbumsList";
-import Tracks from "./components/TracksList";
+import ArtistsList from "./components/itemLists/ArtistsList";
+import Albums from "./components/itemLists/AlbumsList";
+import Tracks from "./components/itemLists/TracksList";
 import CreateArtist from "./components/creatingItems/CreateArtist";
 import CreateAlbum from "./components/creatingItems/CreateAlbum";
 import CreateTrack from "./components/creatingItems/CreateTrack";
