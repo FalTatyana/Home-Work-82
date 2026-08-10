@@ -1,7 +1,34 @@
-.list-group-item {
+.list-item-card {
  background-color: #050716;
  border: none;
  border-bottom: 1px solid #4c5067;
  color: white;
  padding: 15px;
+ margin: 0;
+
+}
+
+.list-items-img {
+ max-width: 70px;
+ border-radius: 30px;
+}
+
+.card-body-list {
+ display: flex;
+ align-items: center;
+}
+
+.card-title{
+ font-size: 18px;
+ margin: 0;
+ padding: 0;
+}
+
+.card-text {
+ display: -webkit-box;
+ -webkit-line-clamp: 2;
+ -webkit-box-orient: vertical;
+ overflow: hidden;
+ max-width: 300px;
+ font-size: 13px;
 }
