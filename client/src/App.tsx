@@ -7,6 +7,7 @@ import CreateArtist from "./components/creatingItems/CreateArtist";
 import CreateAlbum from "./components/creatingItems/CreateAlbum";
 import CreateTrack from "./components/creatingItems/CreateTrack";
 import { ToastContainer } from "react-toastify";
+import AlbumInfo from "./components/AlbumInfo";
 
 const App = () => {
   return (
@@ -19,9 +20,10 @@ const App = () => {
           <Route path="/create-artist" element={<CreateArtist />} />
           <Route path="/create-album" element={<CreateAlbum />} />
           <Route path="/create-track" element={<CreateTrack />} />
+          <Route path="/albums/:id" element={<AlbumInfo/>}/>
         </Routes>
       </Layout>
-      <ToastContainer position="top-right" autoClose={2000} theme="light" />
+      <ToastContainer position="bottom-right" autoClose={2000} theme="light" />
     </div>
   );
 };

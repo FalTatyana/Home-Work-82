@@ -6,6 +6,18 @@ const albumsRouter = express.Router();
 
 albumsRouter.get("/", async (req, res) => {
   try {
+    const { artistId } = req.query;
+
+    if (artistId) {
+      if (typeof artistId !== "string") {
+        return res.status(400).send({ error: "Invalid artistId" });
+      }
+
+      const albums = await Album.find({ artistId });
+
+      return res.send(albums);
+    }
+
     const albums = await Album.find();
 
     res.send(albums);
@@ -17,30 +29,22 @@ albumsRouter.get("/", async (req, res) => {
 albumsRouter.get("/:id", async (req, res) => {
   try {
     const album = await Album.findById(req.params.id);
-    
+
     if (!album) {
       return res.status(400).send({ error: "Album not found!" });
     }
 
-    console.log(album);
-    console.log(album.artistId);
-    
-    const artist  = await Artist.findById(album.artistId);
+    const artist = await Artist.findById(album.artistId);
 
-    console.log("artist", artist);
-    
     if (!artist) {
-     return res.status(400).send({ error: "Artist not found!" });
-   }
-    
-    console.log(artist);
-    
+      return res.status(400).send({ error: "Artist not found!" });
+    }
+
     const albumInfo = {
-     album,
-     artist
+      album,
+      artist,
     };
-    console.log(albumInfo);
-    
+
     res.send(albumInfo);
   } catch {
     res.sendStatus(500);
@@ -49,16 +53,18 @@ albumsRouter.get("/:id", async (req, res) => {
 
 albumsRouter.post("/", async (req, res) => {
   const { name, artistId, year, img } = req.body;
-  
+
   if (!artistId || !name || !year) {
-    return res.status(400).send({ error: "artistId, name and year are required" });
+    return res
+      .status(400)
+      .send({ error: "artistId, name and year are required" });
   }
 
   const newAlbum = {
     name,
     artistId,
     year,
-    img
+    img,
   };
 
   try {

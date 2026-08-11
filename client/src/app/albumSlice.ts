@@ -7,7 +7,7 @@ export interface Album {
   artistId: string;
   year: string;
   img: string;
-  _id: string
+  _id: string;
 }
 
 export interface AlbumMutachion {

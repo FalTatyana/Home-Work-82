@@ -47,8 +47,6 @@ const CreateAlbum = () => {
       return;
     }
 
-    console.log("worked");
-
     const newAlbum = {
       name: album.name,
       artistId: album.artistId,

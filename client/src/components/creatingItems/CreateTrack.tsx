@@ -17,7 +17,6 @@ const CreateTrack = () => {
     dispatch(fetchAlbums());
   }, [dispatch]);
 
-
   const [track, setTrack] = useState({
     name: "",
     albumId: "",
