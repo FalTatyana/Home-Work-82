@@ -8,7 +8,6 @@ const ArtistsList = () => {
   const dispatch = useDispatch<AppDispatch>();
   const artists = useSelector((state: RootState) => state.artists.artists);
   const loading = useSelector((state: RootState) => state.artists.loading);
-  console.log(artists);
 
   React.useEffect(() => {
     dispatch(fetchArtists());
@@ -21,15 +20,15 @@ const ArtistsList = () => {
   return (
     <>
       {artists.map((artist) => (
-        <div className="card list-item-card">
+        <div key={artist.name} className="card list-item-card">
           <div className="row g-0">
-            <div className="col-md-1">
+            <div className="col-md-2">
               <img src={artist.img} className="img-fluid rounded-start list-items-img" alt={artist.name} />
             </div>
-            <div className="col-md-11">
+            <div className="col-md-10">
               <div className="card-body card-body-list">
-                <h5 className="card-title ms-3 col-md-4">{artist.name}</h5>
-                <p className="card-text col-md-6">{artist.info}</p>
+                <h5 className="card-title col-md-4">{artist.name}</h5>
+                <p className="card-text col-md-7">{artist.info}</p>
               </div>
             </div>
           </div>

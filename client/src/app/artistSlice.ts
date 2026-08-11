@@ -6,6 +6,13 @@ export interface Artist {
   name: string;
   img: string;
   info: string;
+  _id: string
+}
+
+export interface ArtistMutation {
+  name: string;
+  info: string;
+  img: string;
 }
 
 interface ArtistState {
@@ -23,14 +30,14 @@ export const fetchArtists = createAsyncThunk("artist/fetchArtists", async () => 
   return response.data;
 });
 
-// export const addLink = createAsyncThunk(
-//   "link/addLink",
-//   async (originalUrl: originalUrl) => {
-//     const response = await axiosApi.post("/", originalUrl);
+export const addArtist = createAsyncThunk(
+  "artist/addArtist",
+  async (artist: ArtistMutation) => {
+    const response = await axiosApi.post("/artists", artist);
 
-//     return response.data;
-//   }
-// );
+    return response.data;
+  }
+);
 
 export const artistSlice = createSlice({
   name: "artist",
@@ -47,19 +54,18 @@ export const artistSlice = createSlice({
     builder.addCase(fetchArtists.rejected, (state) => {
       state.loading = false;
     });
-    // builder.addCase(addLink.pending, (state) => {
-    //   state.loading = true;
-    // });
-    // builder.addCase(addLink.fulfilled, (state, action) => {
-    //   state.loading = false;
-    //   state.links.push(action.payload);
-    //   state.shortCode = action.payload.shortCode;
-    //   toast.success("Link shortened");
-    // });
-    // builder.addCase(addLink.rejected, (state) => {
-    //   state.loading = false;
-    //   toast.error("Link didnt shorten");
-    // });
+    builder.addCase(addArtist.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(addArtist.fulfilled, (state, action) => {
+      state.loading = false;
+      state.artists.push(action.payload);
+      toast.success("Artist added");
+    });
+    builder.addCase(addArtist.rejected, (state) => {
+      state.loading = false;
+      toast.error("Artist did not add");
+    });
   },
 });
 

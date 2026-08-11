@@ -21,7 +21,7 @@ const Tracks = () => {
   return (
     <>
     {tracks.map(track => (
-              <div className="card list-item-card">
+              <div key={track._id} className="card list-item-card">
                   <div className="card-body card-body-list">
                     <h5 className="card-title ms-3 col-md-4">{track.name}</h5>
                     <p className="card-text col-md-6">{track.duration}</p>

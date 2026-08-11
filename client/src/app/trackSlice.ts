@@ -6,6 +6,13 @@ export interface Track {
   name: string;
   duration: string;
   albumId: string;
+  _id: string
+}
+
+export interface TrackMutachion {
+  name: string;
+  duration: string;
+  albumId: string;
 }
 
 interface ArtistState {
@@ -23,14 +30,14 @@ export const fetchTracks = createAsyncThunk("tracks/fetchTracks", async () => {
   return response.data;
 });
 
-// export const addLink = createAsyncThunk(
-//   "link/addLink",
-//   async (originalUrl: originalUrl) => {
-//     const response = await axiosApi.post("/", originalUrl);
+export const addTrack = createAsyncThunk(
+  "track/addTrack",
+  async (track: TrackMutachion) => {
+    const response = await axiosApi.post("/tracks", track);
 
-//     return response.data;
-//   }
-// );
+    return response.data;
+  }
+);
 
 export const tracksSlice = createSlice({
   name: "track",
@@ -47,19 +54,18 @@ export const tracksSlice = createSlice({
     builder.addCase(fetchTracks.rejected, (state) => {
       state.loading = false;
     });
-    // builder.addCase(addLink.pending, (state) => {
-    //   state.loading = true;
-    // });
-    // builder.addCase(addLink.fulfilled, (state, action) => {
-    //   state.loading = false;
-    //   state.links.push(action.payload);
-    //   state.shortCode = action.payload.shortCode;
-    //   toast.success("Link shortened");
-    // });
-    // builder.addCase(addLink.rejected, (state) => {
-    //   state.loading = false;
-    //   toast.error("Link didnt shorten");
-    // });
+    builder.addCase(addTrack.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(addTrack.fulfilled, (state, action) => {
+      state.loading = false;
+      state.tracks.push(action.payload);
+      toast.success("Track added");
+    });
+    builder.addCase(addTrack.rejected, (state) => {
+      state.loading = false;
+      toast.error("Track didnt add");
+    });
   },
 });
 

@@ -20,7 +20,7 @@ const Albums = () => {
   return (
     <>
       {albums.map((album) => (
-        <div className="card list-item-card">
+        <div key={album._id} className="card list-item-card">
           <div className="row g-0">
             <div className="col-md-1">
               <img
@@ -32,7 +32,7 @@ const Albums = () => {
             <div className="col-md-11">
               <div className="card-body card-body-list">
                 <h5 className="card-title ms-3 col-md-4">{album.name}</h5>
-                <p className="card-text col-md-6">{album.year}</p>
+                <p className="card-text col-md-6">{album.year} year</p>
               </div>
             </div>
           </div>

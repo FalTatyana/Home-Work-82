@@ -6,20 +6,22 @@ import Tracks from "./components/itemLists/TracksList";
 import CreateArtist from "./components/creatingItems/CreateArtist";
 import CreateAlbum from "./components/creatingItems/CreateAlbum";
 import CreateTrack from "./components/creatingItems/CreateTrack";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   return (
-    <div style={{backgroundColor: "#050716"}}>
-      <Layout >
+    <div style={{ backgroundColor: "#050716" }}>
+      <Layout>
         <Routes>
-          <Route path="/artists" element={<ArtistsList/>}/>
-          <Route path="/albums" element={<Albums/>}/>
-          <Route path="/tracks" element={<Tracks/>}/>
-          <Route path="/create-artist" element={<CreateArtist/>}/>
-          <Route path="/create-album" element={<CreateAlbum/>}/>
-          <Route path="/create-track" element={<CreateTrack/>}/>
+          <Route path="/artists" element={<ArtistsList />} />
+          <Route path="/albums" element={<Albums />} />
+          <Route path="/tracks" element={<Tracks />} />
+          <Route path="/create-artist" element={<CreateArtist />} />
+          <Route path="/create-album" element={<CreateAlbum />} />
+          <Route path="/create-track" element={<CreateTrack />} />
         </Routes>
       </Layout>
+      <ToastContainer position="top-right" autoClose={2000} theme="light" />
     </div>
   );
 };
