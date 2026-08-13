@@ -3,16 +3,19 @@ import './itemLists.css';
 import React from 'react';
 import type { AppDispatch, RootState } from '../../app/store';
 import { fetchTracks } from '../../app/trackSlice';
+import { useSearchParams } from 'react-router-dom';
 
 const Tracks = () => {
-
+  const [searchParams] = useSearchParams();
   const dispatch = useDispatch<AppDispatch>();
   const tracks = useSelector((state: RootState) => state.tracks.tracks);
   const loading = useSelector((state: RootState) => state.tracks.loading);
 
+  const albumId = searchParams.get('album');
+
   React.useEffect(() => {
-    dispatch(fetchTracks());
-  }, [dispatch]);
+    dispatch(fetchTracks(albumId || undefined));
+  }, [dispatch, albumId]);
 
   if (loading) {
     return <h3>Loading...</h3>;

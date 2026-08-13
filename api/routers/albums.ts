@@ -6,14 +6,13 @@ const albumsRouter = express.Router();
 
 albumsRouter.get("/", async (req, res) => {
   try {
-    const { artistId } = req.query;
+    const { artist } = req.query;
 
-    if (artistId) {
-      if (typeof artistId !== "string") {
-        return res.status(400).send({ error: "Invalid artistId" });
+    if (artist) {
+      if (typeof artist !== "string") {
+        return res.status(400).send({ error: "Invalid artist id" });
       }
-
-      const albums = await Album.find({ artistId });
+      const albums = await Album.find({ artistId: artist });
 
       return res.send(albums);
     }

@@ -21,6 +21,7 @@ const App = () => {
           <Route path="/create-album" element={<CreateAlbum />} />
           <Route path="/create-track" element={<CreateTrack />} />
           <Route path="/albums/:id" element={<AlbumInfo/>}/>
+          <Route path="*" element={<h1>Not found page</h1>} />
         </Routes>
       </Layout>
       <ToastContainer position="bottom-right" autoClose={2000} theme="light" />

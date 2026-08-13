@@ -6,7 +6,7 @@ export interface Track {
   name: string;
   duration: string;
   albumId: string;
-  _id: string
+  _id: string;
 }
 
 export interface TrackMutachion {
@@ -21,14 +21,21 @@ interface ArtistState {
 }
 
 const initialState: ArtistState = {
- tracks: [],
+  tracks: [],
   loading: false,
 };
 
-export const fetchTracks = createAsyncThunk("tracks/fetchTracks", async () => {
-  const response = await axiosApi.get<Track[]>("/tracks");
-  return response.data;
-});
+export const fetchTracks = createAsyncThunk(
+  "tracks/fetchTracks",
+  async (albumId?: string) => {
+    const response = await axiosApi.get<Track[]>("/tracks", {
+      params: albumId
+      ? {album: albumId}
+      : {}
+    });
+    return response.data;
+  }
+);
 
 export const addTrack = createAsyncThunk(
   "track/addTrack",

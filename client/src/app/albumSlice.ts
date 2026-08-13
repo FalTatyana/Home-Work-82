@@ -27,15 +27,19 @@ const initialState: ArtistState = {
   loading: false,
 };
 
-export const fetchAlbums = createAsyncThunk("albums/fetchAlbums", async () => {
-  const response = await axiosApi.get<Album[]>("/albums");
+export const fetchAlbums = createAsyncThunk("albums/fetchAlbums", async (artistId?:string) => {
+  const response = await axiosApi.get<Album[]>("/albums", {
+    params: artistId
+    ? {artist: artistId}
+    : {}
+  });
   return response.data;
 });
 
 export const addAlbum = createAsyncThunk(
   "album/addAlbum",
   async (album: AlbumMutachion) => {
-    const response = await axiosApi.post("/albums", album);
+    const response = await axiosApi.post("/albums", {album});
 
     return response.data;
   }

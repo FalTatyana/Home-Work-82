@@ -1,20 +1,29 @@
-import React from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../app/store";
 import "./itemLists.css";
 import { fetchAlbums } from "../../app/albumSlice";
+import { useSearchParams } from "react-router-dom";
 
 const Albums = () => {
+  const [searchParams] = useSearchParams();
   const dispatch = useDispatch<AppDispatch>();
   const albums = useSelector((state: RootState) => state.albums.albums);
   const loading = useSelector((state: RootState) => state.albums.loading);
 
-  React.useEffect(() => {
-    dispatch(fetchAlbums());
-  }, [dispatch]);
+
+  const artistId = searchParams.get("artist");
+
+  useEffect(() => {
+    dispatch(fetchAlbums(artistId || undefined));
+  }, [dispatch, artistId]);
 
   if (loading) {
     return <h3>Loading...</h3>;
+  }
+
+  if (albums.length === 0) {
+    return <h3>No albums yet</h3>;
   }
 
   return (

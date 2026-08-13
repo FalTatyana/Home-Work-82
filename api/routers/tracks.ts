@@ -1,9 +1,22 @@
 import express from "express";
 import Track from "../models/Tracks";
+import { Album } from "@mui/icons-material";
 
 const tracksRouter = express.Router();
 
 tracksRouter.get("/", async (req, res) => {
+  const { album } = req.query;
+
+  if (album) {
+    if (typeof album !== "string") {
+      return res.status(400).send({ error: "Invalid album id" });
+    }
+
+    const tracks = await Track.find({ albumId: album });
+
+    return res.send(tracks);
+  }
+
   try {
     const tracks = await Track.find();
 
@@ -14,7 +27,6 @@ tracksRouter.get("/", async (req, res) => {
 });
 
 tracksRouter.get("/:id", async (req, res) => {
- 
   try {
     const track = await Track.findById({
       _id: req.params.id,
@@ -31,15 +43,17 @@ tracksRouter.get("/:id", async (req, res) => {
 
 tracksRouter.post("/", async (req, res) => {
   const { name, duration, albumId } = req.body;
-  
+
   if (!duration || !name || !albumId) {
-    return res.status(400).send({ error: "Name, duration and albumId are required" });
+    return res
+      .status(400)
+      .send({ error: "Name, duration and albumId are required" });
   }
 
   const newTrack = {
     name,
     duration,
-    albumId
+    albumId,
   };
 
   try {
