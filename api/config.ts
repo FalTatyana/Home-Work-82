@@ -1,6 +1,6 @@
 import path from 'path';
 
-const rootPath = import.meta.dirname;
+const rootPath = __dirname;
 
 const config = {
  rootPath,

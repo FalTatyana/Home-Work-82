@@ -1,5 +1,6 @@
 import express from "express";
 import Artist from "../models/Artists";
+import { imagesUpload } from "../multer";
 
 const artistRouter = express.Router();
 
@@ -13,8 +14,8 @@ artistRouter.get("/", async (req, res) => {
   }
 });
 
-artistRouter.post("/", async (req, res) => {
-  const { name, img, info } = req.body;
+artistRouter.post("/", imagesUpload.single('img'), async (req, res) => {
+  const { name, info } = req.body;
   
   if (!name) {
     return res.status(400).send({ error: "Name is required" });
@@ -22,7 +23,7 @@ artistRouter.post("/", async (req, res) => {
 
   const newArtist = {
     name,
-    img,
+    img: req.file ? req.file.filename : null,
     info
   };
 
