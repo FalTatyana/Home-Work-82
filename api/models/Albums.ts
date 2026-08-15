@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const AlbumShema = new mongoose.Schema({
+const AlbumSсhema = new mongoose.Schema({
  name: {
   type: String,
   required: true,
@@ -16,5 +16,5 @@ const AlbumShema = new mongoose.Schema({
  img: String
 });
 
-const Album = mongoose.model('Album', AlbumShema);
+const Album = mongoose.model('Album', AlbumSсhema);
 export default Album;

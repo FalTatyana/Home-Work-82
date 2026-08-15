@@ -14,6 +14,10 @@ const userSchema = new Schema<UserFields>({
  password: {
   type: String,
   require: true
+ },
+ token: {
+  type: String,
+  required: true
  }
 });
 
@@ -22,6 +26,13 @@ userSchema.pre("save", async function(){
  const hash = await bcrypt.hash(this.password, salt);
 
  this.password = hash;
+})
+
+userSchema.set("toJSON", {
+ transform: (_, ret: Partial<UserFields>) => {
+  delete ret.password;
+  return ret;
+ }
 })
 
 const User = mongoose.model("User", userSchema);
