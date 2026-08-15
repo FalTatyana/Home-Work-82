@@ -17,13 +17,21 @@ const ArtistsList = () => {
     return <h3>Loading...</h3>;
   }
 
+  if (artists.length === 0) {
+    return (<h1>Not artist yet</h1>)
+  }
+
   return (
     <>
       {artists.map((artist) => (
         <div key={artist.name} className="card list-item-card">
           <div className="row g-0">
             <div className="col-md-2">
-              <img src={artist.img} className="img-fluid rounded-start list-items-img" alt={artist.name} />
+              <img
+                src={`http://localhost:8000/images/${artist.img}`}
+                className="img-fluid rounded-start list-items-img"
+                alt={artist.name}
+              />
             </div>
             <div className="col-md-10">
               <div className="card-body card-body-list">

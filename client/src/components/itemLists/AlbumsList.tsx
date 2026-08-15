@@ -33,7 +33,7 @@ const Albums = () => {
           <div className="row g-0">
             <div className="col-md-1">
               <img
-                src={album.img}
+                src={`http://localhost:8000/images/${album.img}`}
                 className="img-fluid rounded-start list-items-img"
                 alt={album.name}
               />

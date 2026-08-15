@@ -13,12 +13,23 @@ const CreateArtist = () => {
   const [artist, setArtist] = useState({
     name: "",
     info: "",
-    img: "",
+    img: null,
   });
   
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setArtist((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    if (file) {
+      setArtist((prev) => ({
+        ...prev,
+        img: file,
+      }));
+    }
   };
 
   const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
@@ -75,18 +86,15 @@ const CreateArtist = () => {
           Enter artist info
         </label>
       </div>
-      <div className="form-floating mb-3 col-8">
+      <div className="mb-3 mt-3 col-8">
         <input
           className="form-control creating-input"
-          type="text"
+          type="file"
           id="img"
-          onChange={handleChange}
           name="img"
-          value={artist.img}
+          accept="image/*"
+          onChange={handleFileChange}
         />
-        <label className="creating-label" htmlFor="floatingPassword">
-          Enter img link
-        </label>
       </div>
       <div className="col-12">
         <button

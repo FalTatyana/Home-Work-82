@@ -10,11 +10,11 @@ export interface Album {
   _id: string;
 }
 
-export interface AlbumMutachion {
+export interface AlbumMutation {
   name: string;
   artistId: string;
   year: string;
-  img: string;
+  img: File | null;
 }
 
 interface ArtistState {
@@ -27,21 +27,29 @@ const initialState: ArtistState = {
   loading: false,
 };
 
-export const fetchAlbums = createAsyncThunk("albums/fetchAlbums", async (artistId?:string) => {
-  const response = await axiosApi.get<Album[]>("/albums", {
-    params: artistId
-    ? {artist: artistId}
-    : {}
-  });
-  return response.data;
-});
+export const fetchAlbums = createAsyncThunk(
+  "albums/fetchAlbums",
+  async (artistId?: string | undefined) => {
+    const response = await axiosApi.get<Album[]>("/albums", {
+      params: artistId ? { artist: artistId } : {},
+    });
+    return response.data;
+  }
+);
 
 export const addAlbum = createAsyncThunk(
   "album/addAlbum",
-  async (album: AlbumMutachion) => {
-    const response = await axiosApi.post("/albums", {album});
+  async (album: AlbumMutation) => {
+    const formData = new FormData();
 
-    return response.data;
+    formData.append("name", album.name);
+    formData.append("artistId", album.artistId);
+    formData.append("year", album.year);
+    if (album.img) {
+      formData.append("img", album.img);
+    }
+    const response = await axiosApi.post('/albums', formData);
+    return response.data
   }
 );
 

@@ -6,13 +6,13 @@ export interface Artist {
   name: string;
   img: string;
   info: string;
-  _id: string
+  _id: string;
 }
 
 export interface ArtistMutation {
   name: string;
   info: string;
-  img: string;
+  img: File | null;
 }
 
 interface ArtistState {
@@ -25,17 +25,26 @@ const initialState: ArtistState = {
   loading: false,
 };
 
-export const fetchArtists = createAsyncThunk("artist/fetchArtists", async () => {
-  const response = await axiosApi.get<Artist[]>("/artists");
-  return response.data;
-});
+export const fetchArtists = createAsyncThunk(
+  "artist/fetchArtists",
+  async () => {
+    const response = await axiosApi.get<Artist[]>("/artists");
+    return response.data;
+  }
+);
 
 export const addArtist = createAsyncThunk(
   "artist/addArtist",
   async (artist: ArtistMutation) => {
-    const response = await axiosApi.post("/artists", artist);
+    const formData = new FormData();
 
-    return response.data;
+    formData.append("name", artist.name);
+    formData.append("info", artist.info);
+    if (artist.img) {
+      formData.append("img", artist.img);
+    }
+    const response = await axiosApi.post("/artists", formData);
+    return response;
   }
 );
 

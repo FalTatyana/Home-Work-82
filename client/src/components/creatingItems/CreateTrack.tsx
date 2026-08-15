@@ -14,7 +14,7 @@ const CreateTrack = () => {
   const albums = useSelector((state: RootState) => state.albums.albums);
 
   React.useEffect(() => {
-    dispatch(fetchAlbums());
+    dispatch(fetchAlbums(undefined));
   }, [dispatch]);
 
   const [track, setTrack] = useState({
