@@ -8,19 +8,21 @@ import CreateAlbum from "./components/creatingItems/CreateAlbum";
 import CreateTrack from "./components/creatingItems/CreateTrack";
 import { ToastContainer } from "react-toastify";
 import AlbumInfo from "./components/AlbumInfo";
+import ArtistInfo from "./components/ArtistInfo";
 
 const App = () => {
   return (
     <div style={{ backgroundColor: "#050716" }}>
       <Layout>
         <Routes>
-          <Route path="/artists" element={<ArtistsList />} />
+          <Route path="/" element={<ArtistsList />} />
           <Route path="/albums" element={<Albums />} />
           <Route path="/tracks" element={<Tracks />} />
           <Route path="/create-artist" element={<CreateArtist />} />
           <Route path="/create-album" element={<CreateAlbum />} />
           <Route path="/create-track" element={<CreateTrack />} />
           <Route path="/albums/:id" element={<AlbumInfo/>}/>
+          <Route path="/artists/:id" element={<ArtistInfo/>}/>
           <Route path="*" element={<h1 style={{color: "red"}}>Not found page</h1>} />
         </Routes>
       </Layout>

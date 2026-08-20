@@ -13,7 +13,7 @@ const AlbumInfo = () => {
   const loading = useSelector((state: RootState) => state.albums.loading);
 
   React.useEffect(() => {
-    dispatch(fetchAlbums());
+    dispatch(fetchAlbums(id || undefined));
   }, [dispatch]);
 
   React.useEffect(() => {

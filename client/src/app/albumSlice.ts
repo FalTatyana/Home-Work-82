@@ -5,7 +5,7 @@ import axiosApi from "../../axiosApi";
 export interface Album {
   name: string;
   artistId: string;
-  year: string;
+  year: number;
   img: string;
   _id: string;
 }
@@ -13,7 +13,7 @@ export interface Album {
 export interface AlbumMutation {
   name: string;
   artistId: string;
-  year: string;
+  year: number;
   img: File | null;
 }
 
@@ -44,7 +44,7 @@ export const addAlbum = createAsyncThunk(
 
     formData.append("name", album.name);
     formData.append("artistId", album.artistId);
-    formData.append("year", album.year);
+    formData.append("year", album.year.toString());
     if (album.img) {
       formData.append("img", album.img);
     }

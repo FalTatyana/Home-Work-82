@@ -3,19 +3,14 @@ import { NavLink } from "react-router-dom";
 const SideBar = () => {
   const linksAr = [
     {
-      name: "Home",
+      name: "Artists",
       path: "/",
-      icon: "house-door",
+      icon: "person",
     },
     {
       name: "Tracks",
       path: "/tracks",
       icon: "music-note-beamed",
-    },
-    {
-      name: "Artists",
-      path: "/artists",
-      icon: "person",
     },
     {
       name: "Albums",

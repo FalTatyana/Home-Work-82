@@ -12,6 +12,10 @@ const TrackSсhema = new mongoose.Schema({
  albumId: {
   type: String,
   required: true,
+ },
+ trackNumber: {
+  type: Number,
+  required: true
  }
 });
 

@@ -41,7 +41,7 @@ tracksRouter.get("/:id", async (req, res) => {
 });
 
 tracksRouter.post("/", async (req, res) => {
-  const { name, duration, albumId } = req.body;
+  const { name, duration, albumId, trackNumber } = req.body;
 
   if (!duration || !name || !albumId) {
     return res
@@ -53,6 +53,7 @@ tracksRouter.post("/", async (req, res) => {
     name,
     duration,
     albumId,
+    trackNumber
   };
 
   try {

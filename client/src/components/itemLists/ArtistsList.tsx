@@ -3,6 +3,7 @@ import "./itemLists.css";
 import type { AppDispatch, RootState } from "../../app/store";
 import React from "react";
 import { fetchArtists } from "../../app/artistSlice";
+import { Link } from "react-router-dom";
 
 const ArtistsList = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -24,7 +25,8 @@ const ArtistsList = () => {
   return (
     <>
       {artists.map((artist) => (
-        <div key={artist.name} className="card list-item-card">
+        <Link to={`artists/${artist._id}`} key={artist.name} className="text-decoration-none">
+        <div className="card list-item-card">
           <div className="row g-0">
             <div className="col-md-2">
               <img
@@ -41,6 +43,8 @@ const ArtistsList = () => {
             </div>
           </div>
         </div>
+        </Link>
+        
       ))}
     </>
   );
